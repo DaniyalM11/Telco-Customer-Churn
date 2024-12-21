@@ -2,3 +2,8 @@ pandas
 seaborn
 os
 matplotlib
+statsmodels
+sklearn
+xgboost
+lightgbm
+catboost
