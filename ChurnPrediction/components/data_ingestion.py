@@ -36,7 +36,7 @@ class DataIngestion:
             #createing folder
             dir_path = os.path.dirname(feature_store_file_path)
             os.makedirs(dir_path,exist_ok=True)
-            df.to_csv(feature_store_file_path,index=False.Header=True)
+            df.to_csv(feature_store_file_path,index=False,header=True)
             return df
         
         except Exception as e:
@@ -58,9 +58,9 @@ class DataIngestion:
 
             logging.info("exporting created for train and test data to filepath")
 
-            train_set.to_csv(self.data_ingestion_config.training_file_path,index=False,Header=True)
+            train_set.to_csv(self.data_ingestion_config.training_file_path,index=False,header=True)
 
-            test_set.to_csv(self.data_ingestion_config.testing_file_path,index=False,Header=True)
+            test_set.to_csv(self.data_ingestion_config.testing_file_path,index=False,header=True)
 
             logging.info("exported train and test data to filepath")    
             
