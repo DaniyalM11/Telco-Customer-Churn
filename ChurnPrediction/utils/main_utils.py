@@ -1,5 +1,11 @@
 from datetime import datetime
-import os   
+import os,sys
+import yaml
+from ChurnPrediction.exception.exception import ChurnPredictionException
+from ChurnPrediction.logging.logger import logging
+import numpy as np
+import dill
+import pickle       
 
 # function to find the latest file in the directory
 def churn_filename():
@@ -32,3 +38,11 @@ def churn_filename():
         print(f"An error occurred: {e}")
 
     return latest_file
+
+# function to read yaml file
+def read_yaml_file(file_path:str) -> dict:
+    try:
+        with open(file_path, 'rb') as yaml_file:
+            return yaml.safe_load(yaml_file)
+    except Exception as e:
+        raise ChurnPredictionException(e,sys)

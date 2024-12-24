@@ -2,10 +2,14 @@ README.md
 setup.py
 ChurnPrediction/__init__.py
 ChurnPrediction/components/__init__.py
+ChurnPrediction/components/data_ingestion.py
+ChurnPrediction/components/data_validation.py
+ChurnPrediction/components/test.py
 ChurnPrediction/constant/__init__.py
 ChurnPrediction/constant/training_pipeline/__init__.py
 ChurnPrediction/constant/training_pipeline/temp2.py
 ChurnPrediction/entity/__init__.py
+ChurnPrediction/entity/artifact_entity.py
 ChurnPrediction/entity/config_entity.py
 ChurnPrediction/exception/__init__.py
 ChurnPrediction/exception/exception.py
