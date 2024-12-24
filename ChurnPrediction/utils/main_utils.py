@@ -43,6 +43,18 @@ def churn_filename():
 def read_yaml_file(file_path:str) -> dict:
     try:
         with open(file_path, 'rb') as yaml_file:
-            return yaml.safe_load(yaml_file)
+            return yaml.safe_load(yaml_file)['columns']
     except Exception as e:
         raise ChurnPredictionException(e,sys)
+
+# function to write yaml file
+def write_yaml_file(file_path: str, contect: object, replace: bool = False) -> None:
+    try:
+        if replace:
+            if os.path.exists(file_path):
+                os.remove(file_path)
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        with open(file_path, 'w') as yaml_file:
+            yaml.dump(contect, yaml_file)        
+    except Exception as e:
+        raise ChurnPredictionException(e,sys)    

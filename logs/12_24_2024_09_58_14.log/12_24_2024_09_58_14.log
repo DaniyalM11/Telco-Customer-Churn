@@ -1,0 +1,17 @@
+[2024-12-24 09:58:15,724] - root - INFO - Initiating ingestion of data
+[2024-12-24 09:58:15,780] - root - INFO - Train and Test data split done
+[2024-12-24 09:58:15,780] - root - INFO - Exited split_data_as_train_test method of Data_Ingestion class
+[2024-12-24 09:58:15,780] - root - INFO - exporting created for train and test data to filepath
+[2024-12-24 09:58:15,818] - root - INFO - exported train and test data to filepath
+[2024-12-24 09:58:15,819] - root - INFO - Data ingestion done
+[2024-12-24 09:58:15,827] - root - INFO - Initiating validation of data
+[2024-12-24 09:58:15,828] - root - INFO - Initiating data validation
+[2024-12-24 09:58:15,864] - root - INFO - Required number of columns in the schema:2
+[2024-12-24 09:58:15,865] - root - INFO - Dataframe has columns:21
+[2024-12-24 09:58:15,865] - root - ERROR - Number of columns in the dataframe does not match the schema
+[2024-12-24 09:58:15,865] - root - ERROR - Trained Data Schema validation failed
+[2024-12-24 09:58:15,865] - root - INFO - Required number of columns in the schema:2
+[2024-12-24 09:58:15,865] - root - INFO - Dataframe has columns:21
+[2024-12-24 09:58:15,865] - root - ERROR - Number of columns in the dataframe does not match the schema
+[2024-12-24 09:58:15,865] - root - ERROR - Test Data Schema validation failed
+[2024-12-24 09:58:16,054] - root - INFO - Data validation done
