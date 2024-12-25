@@ -1,0 +1,19 @@
+[2024-12-25 16:19:22,812] - root - INFO - Initiating ingestion of data
+[2024-12-25 16:19:22,871] - root - INFO - Train and Test data split done
+[2024-12-25 16:19:22,872] - root - INFO - Exited split_data_as_train_test method of Data_Ingestion class
+[2024-12-25 16:19:22,872] - root - INFO - exporting created for train and test data to filepath
+[2024-12-25 16:19:22,908] - root - INFO - exported train and test data to filepath
+[2024-12-25 16:19:22,908] - root - INFO - Data ingestion done
+[2024-12-25 16:19:22,911] - root - INFO - Initiating validation of data
+[2024-12-25 16:19:22,911] - root - INFO - Initiating data validation
+[2024-12-25 16:19:22,944] - root - INFO - Required number of columns in the schema:21
+[2024-12-25 16:19:22,944] - root - INFO - Dataframe has columns:21
+[2024-12-25 16:19:22,944] - root - INFO - Number of columns in the dataframe matches the schema
+[2024-12-25 16:19:22,944] - root - INFO - Required number of columns in the schema:21
+[2024-12-25 16:19:22,944] - root - INFO - Dataframe has columns:21
+[2024-12-25 16:19:22,944] - root - INFO - Number of columns in the dataframe matches the schema
+[2024-12-25 16:19:23,133] - root - INFO - Data validation done
+[2024-12-25 16:19:23,133] - root - INFO - Initiating transformation of data
+[2024-12-25 16:19:23,134] - root - INFO - Entered initiate_data_transformation method of DataTransformation class
+[2024-12-25 16:19:23,134] - root - INFO - Starting data transformation
+[2024-12-25 16:19:24,108] - root - INFO - Data transformation done

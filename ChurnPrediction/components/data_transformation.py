@@ -137,14 +137,14 @@ class DataTransformation:
             #print(X_train.columns)
             #print(y_train)
             #print(X_train.head())
-            X_train.to_csv(r"C:\Users\Daniy\Telco Customer Churn Prediction\testing2.csv", index=False,header=True)
+            #X_train.to_csv(r"C:\Users\Daniy\Telco Customer Churn Prediction\testing2.csv", index=False,header=True)
             # testing DataFrame
             X_test = test_df.drop(columns=[TARGET_LABEL],axis=1)
             y_test = test_df[TARGET_LABEL]
             #print(X_test.columns)
             #print(y_test)   
             #print(X_train.head())
-            X_test.to_csv(r"C:\Users\Daniy\Telco Customer Churn Prediction\testing3.csv", index=False,header=True)
+            #X_test.to_csv(r"C:\Users\Daniy\Telco Customer Churn Prediction\testing3.csv", index=False,header=True)
             #################################################################################################        
             # preprocessor for training data
             #preprocessor = self.get_data_transformer_object(
@@ -190,7 +190,7 @@ class DataTransformation:
                 pd.DataFrame(X_test_cat_ohe, columns=cat_ohe_cols)  
             ], axis=1)
 
-            transformed_x_train.to_csv(r"C:\Users\Daniy\Telco Customer Churn Prediction\testing.csv", index=False,header=True)
+            #transformed_x_train.to_csv(r"C:\Users\Daniy\Telco Customer Churn Prediction\testing.csv", index=False,header=True)
 
                         
             #apply VIF
