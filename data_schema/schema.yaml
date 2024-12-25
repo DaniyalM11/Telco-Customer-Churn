@@ -22,6 +22,32 @@ columns:
   Churn: object
 
 numerical_columns:
-  - SeniorCitizen
-  - tenure
-  - MonthlyCharges
+- SeniorCitizen
+- tenure
+- MonthlyCharges
+
+columns_selected:
+- MonthlyCharges
+- PhoneService_Yes
+- MultipleLines_No phone service
+- InternetService_Fiber optic
+- InternetService_No
+- StreamingMovies_Yes
+- StreamingTV_Yes
+- TotalCharges
+- tenure
+- MultipleLines_Yes
+- DeviceProtection_Yes
+- OnlineBackup_Yes
+- TechSupport_Yes
+- OnlineSecurity_Yes
+- Contract_Two year
+- PaymentMethod_Electronic check
+- PaymentMethod_Mailed check
+- Contract_One year
+- PaymentMethod_Credit card (automatic)
+- Partner_Yes
+- Dependents_Yes
+- PaperlessBilling_Yes
+- SeniorCitizen_Yes
+- gender_Male

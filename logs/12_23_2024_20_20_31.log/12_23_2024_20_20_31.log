@@ -1,5 +1,0 @@
-[2024-12-23 20:20:33,037] - root - INFO - Initiating ingestion of data
-[2024-12-23 20:20:33,091] - root - INFO - Train and Test data split done
-[2024-12-23 20:20:33,091] - root - INFO - Exited split_data_as_train_test method of Data_Ingestion class
-[2024-12-23 20:20:33,092] - root - INFO - exporting created for train and test data to filepath
-[2024-12-23 20:20:33,126] - root - INFO - exported train and test data to filepath

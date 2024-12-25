@@ -4,7 +4,6 @@ import yaml
 from ChurnPrediction.exception.exception import ChurnPredictionException
 from ChurnPrediction.logging.logger import logging
 import numpy as np
-import dill
 import pickle       
 
 # function to find the latest file in the directory
@@ -40,12 +39,12 @@ def churn_filename():
     return latest_file
 
 # function to read yaml file
-def read_yaml_file(file_path:str) -> dict:
+def read_yaml_file(file_path:str,key:str):
     try:
         with open(file_path, 'rb') as yaml_file:
-            return yaml.safe_load(yaml_file)['columns']
+            return yaml.safe_load(yaml_file)[key]
     except Exception as e:
-        raise ChurnPredictionException(e,sys)
+        raise ChurnPredictionException(e,sys) from e
 
 # function to write yaml file
 def write_yaml_file(file_path: str, contect: object, replace: bool = False) -> None:
@@ -57,4 +56,30 @@ def write_yaml_file(file_path: str, contect: object, replace: bool = False) -> N
         with open(file_path, 'w') as yaml_file:
             yaml.dump(contect, yaml_file)        
     except Exception as e:
-        raise ChurnPredictionException(e,sys)    
+        raise ChurnPredictionException(e,sys) from e    
+    
+def save_numpy_array_data(file_path: str, array: np.array):
+    """
+    save numpy array data to file
+    file_path: str location of file to save
+    array: np.array data to save
+    """    
+    try:
+        dir_path = os.path.dirname(file_path)
+        os.makedirs(dir_path, exist_ok=True)
+        with open(file_path, 'wb') as file_object:
+            np.save(file_object, array)
+    except Exception as e:
+        raise ChurnPredictionException(e,sys) from e
+
+def save_object(file_path: str, obj: object) -> None:
+    try:
+        logging.info(f"Entered the save_object method of MainUtils class")
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        with open(file_path, 'wb') as file_object:
+            pickle.dump(obj, file_object)
+        logging.info("Exited the save_object method of MainUtils class")
+    except Exception as e:
+        raise ChurnPredictionException(e,sys) from e
+
+                    

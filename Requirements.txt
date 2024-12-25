@@ -11,8 +11,6 @@ lightgbm
 catboost
 typing
 scipy
-dill
-#pickle
 pyaml
 
 ##-e .

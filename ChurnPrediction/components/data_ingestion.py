@@ -1,6 +1,7 @@
 from ChurnPrediction.logging.logger import logging
 from ChurnPrediction.exception.exception import ChurnPredictionException
 from ChurnPrediction.constant import training_pipeline
+from ChurnPrediction.constant.training_pipeline import TARGET_LABEL
 
 # Config of the data ingestion
 
@@ -45,7 +46,7 @@ class DataIngestion:
     def split_data_as_train_test(self,df:pd.DataFrame):
         try:
             train_set, test_set = train_test_split(df,
-                test_size=self.data_ingestion_config.train_test_split_ratio,random_state=training_pipeline.RANDOM_STATE)
+                test_size=self.data_ingestion_config.train_test_split_ratio, stratify=df[TARGET_LABEL],random_state=training_pipeline.RANDOM_STATE)
         
             logging.info("Train and Test data split done")
 
