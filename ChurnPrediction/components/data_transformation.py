@@ -145,24 +145,25 @@ class DataTransformation:
             #print(y_test)   
             #print(X_train.head())
             #X_test.to_csv(r"C:\Users\Daniy\Telco Customer Churn Prediction\testing3.csv", index=False,header=True)
-            #################################################################################################        
-            # preprocessor for training data
-            #preprocessor = self.get_data_transformer_object(
-            #    X_train.select_dtypes(include=[np.number]).columns,
-            #    X_train.select_dtypes(include=[object]).columns
-            #)
-            # fit and transform training and test data
-            #preprocessor_object = preprocessor.fit(X_train)
-            #transformed_x_train = preprocessor_object.transform(X_train)
-            #transformed_x_test = preprocessor_object.transform(X_test)
-            #print(type(transformed_x_train))
-            #print(type(transformed_x_test))
-            ##########################################################################################################
+
             
             cat_cols = [col for col in X_train.columns if (df[col].dtype == 'object')]
             print(cat_cols)
             num_cols = [col for col in X_train.columns if col not in cat_cols]
             print(num_cols)
+
+            #################################################################################################        
+            # preprocessor for training data
+            preprocessor = self.get_data_transformer_object(
+                num_cols=num_cols,cat_cols=cat_cols
+                )
+            # fit and transform training and test data
+            preprocessor_object = preprocessor.fit(X_train)
+            transformed_x_train = preprocessor_object.transform(X_train)
+            transformed_x_test = preprocessor_object.transform(X_test)
+            #print(type(transformed_x_train))
+            #print(type(transformed_x_test))
+            ##########################################################################################################
 
             # One Hot Encoding
             encoder = OneHotEncoder(drop='first', sparse_output=False)
@@ -180,12 +181,12 @@ class DataTransformation:
             X_test_num_scaled = pd.DataFrame(scaler.transform(X_test[num_cols]), columns=num_cols)
 
             # Concatenating Scaled Numerical and Encoded Categorical Features
-            transformed_x_train = pd.concat([
+            transformed_x_train_df = pd.concat([
                 X_train_num_scaled.reset_index(drop=True),  
                 pd.DataFrame(X_train_cat_ohe, columns=cat_ohe_cols)  
             ], axis=1)
 
-            transformed_x_test = pd.concat([
+            transformed_x_test_df = pd.concat([
                 X_test_num_scaled.reset_index(drop=True), 
                 pd.DataFrame(X_test_cat_ohe, columns=cat_ohe_cols)  
             ], axis=1)
@@ -194,19 +195,19 @@ class DataTransformation:
 
                         
             #apply VIF
-            vif_report_before_df = self.checkVIF(transformed_x_train)
+            vif_report_before_df = self.checkVIF(transformed_x_train_df)
             write_yaml_file(self.data_transformation_config.VIF_report_before_dir, vif_report_before_df.to_dict(), replace=True)
-            vif_report_after_df = self.checkVIF(pd.DataFrame(transformed_x_train)[read_yaml_file(SCHEMA_FILE_PATH,'columns_selected')])
+            vif_report_after_df = self.checkVIF(pd.DataFrame(transformed_x_train_df)[read_yaml_file(SCHEMA_FILE_PATH,'columns_selected')])
             write_yaml_file(self.data_transformation_config.VIF_report_after_dir, vif_report_after_df.to_dict(), replace=True)
             
             dir_path=os.path.dirname(self.data_transformation_config.transformed_train_file_path)
             os.makedirs(dir_path,exist_ok=True)
 
-            transformed_x_train = transformed_x_train[read_yaml_file(SCHEMA_FILE_PATH,'columns_selected')]
-            transformed_x_test = transformed_x_test[read_yaml_file(SCHEMA_FILE_PATH,'columns_selected')]
+            transformed_x_train_df = transformed_x_train_df[read_yaml_file(SCHEMA_FILE_PATH,'columns_selected')]
+            transformed_x_test_df = transformed_x_test_df[read_yaml_file(SCHEMA_FILE_PATH,'columns_selected')]
             
-            concat_train = pd.concat([transformed_x_train, y_train],axis=1)
-            concat_test = pd.concat([transformed_x_test, y_test],axis=1)
+            concat_train = pd.concat([transformed_x_train_df, y_train],axis=1)
+            concat_test = pd.concat([transformed_x_test_df, y_test],axis=1)
 
             concat_train.to_csv(self.data_transformation_config.transformed_train_file_path, index=False, header=True)
             concat_test.to_csv(self.data_transformation_config.transformed_test_file_path, index=False, header=True)
@@ -219,7 +220,7 @@ class DataTransformation:
             #save_numpy_array_data( self.data_transformation_config.transformed_test_file_path,array=test_arr)
             #save_object( self.data_transformation_config.transformed_object_file_path, preprocessor_object)
 
-            #save_object( "final_model/preprocessor.pkl", preprocessor_object)
+            save_object( "final_model/preprocessor.pkl", preprocessor_object)
 
             data_transformation_artifact=DataTransformationArtifact(
                 transformed_object_file_path=self.data_transformation_config.transformed_object_file_path,

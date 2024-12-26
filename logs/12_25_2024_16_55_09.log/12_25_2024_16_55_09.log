@@ -1,0 +1,23 @@
+[2024-12-25 16:55:10,526] - root - INFO - Initiating ingestion of data
+[2024-12-25 16:55:10,585] - root - INFO - Train and Test data split done
+[2024-12-25 16:55:10,585] - root - INFO - Exited split_data_as_train_test method of Data_Ingestion class
+[2024-12-25 16:55:10,585] - root - INFO - exporting created for train and test data to filepath
+[2024-12-25 16:55:10,620] - root - INFO - exported train and test data to filepath
+[2024-12-25 16:55:10,621] - root - INFO - Data ingestion done
+[2024-12-25 16:55:10,624] - root - INFO - Initiating validation of data
+[2024-12-25 16:55:10,624] - root - INFO - Initiating data validation
+[2024-12-25 16:55:10,658] - root - INFO - Required number of columns in the schema:21
+[2024-12-25 16:55:10,658] - root - INFO - Dataframe has columns:21
+[2024-12-25 16:55:10,658] - root - INFO - Number of columns in the dataframe matches the schema
+[2024-12-25 16:55:10,658] - root - INFO - Required number of columns in the schema:21
+[2024-12-25 16:55:10,658] - root - INFO - Dataframe has columns:21
+[2024-12-25 16:55:10,658] - root - INFO - Number of columns in the dataframe matches the schema
+[2024-12-25 16:55:10,845] - root - INFO - Data validation done
+[2024-12-25 16:55:10,845] - root - INFO - Initiating transformation of data
+[2024-12-25 16:55:10,845] - root - INFO - Entered initiate_data_transformation method of DataTransformation class
+[2024-12-25 16:55:10,845] - root - INFO - Starting data transformation
+[2024-12-25 16:55:10,888] - root - INFO - Entered get_data_transformer_object method of DataTransformation class
+[2024-12-25 16:55:10,888] - root - INFO - Initialized transformation pipeline successfully.
+[2024-12-25 16:55:11,706] - root - INFO - Entered the save_object method of MainUtils class
+[2024-12-25 16:55:11,707] - root - INFO - Exited the save_object method of MainUtils class
+[2024-12-25 16:55:11,708] - root - INFO - Data transformation done
