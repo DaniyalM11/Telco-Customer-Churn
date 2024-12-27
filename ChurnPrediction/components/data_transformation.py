@@ -16,7 +16,7 @@ from ChurnPrediction.entity.config_entity import DataTransformationConfig
 from ChurnPrediction.exception.exception import ChurnPredictionException
 from ChurnPrediction.logging.logger import logging
 from ChurnPrediction.utils.main_utils import save_numpy_array_data, save_object
-from ChurnPrediction.utils.main_utils import read_yaml_file,write_yaml_file
+from ChurnPrediction.utils.main_utils import read_yaml_file,write_yaml_file, read_csv_data
 
 
 class DataTransformation:
@@ -25,19 +25,7 @@ class DataTransformation:
             self.data_validation_artifact:DataValidationArtifact = data_validation_artifact
             self.data_transformation_config:DataTransformationConfig = data_transformation_config
         except Exception as e:
-            raise ChurnPredictionException(e,sys) from e    
-
-    @staticmethod
-    def read_data(file_path) -> pd.DataFrame:
-        """
-        read data from file
-        file_path: str location of file to read
-        return: pd.DataFrame data
-        """
-        try:
-            return pd.read_csv(file_path)
-        except Exception as e:
-            raise ChurnPredictionException(e,sys) from e    
+            raise ChurnPredictionException(e,sys) from e     
 
     @classmethod
     def get_data_transformer_object(cls, num_cols: list, cat_cols: list) -> Pipeline:
@@ -108,8 +96,8 @@ class DataTransformation:
             "Entered initiate_data_transformation method of DataTransformation class")
         try:
             logging.info("Starting data transformation")
-            train_df = self.read_data(self.data_validation_artifact.valid_train_file_path)
-            test_df = self.read_data(self.data_validation_artifact.valid_test_file_path)
+            train_df = read_csv_data(self.data_validation_artifact.valid_train_file_path)
+            test_df = read_csv_data(self.data_validation_artifact.valid_test_file_path)
 
             for df in [train_df, test_df]:
                 for item in DATA_TRANSFORMATION_COLUMNS_TO_FLOAT64:
@@ -133,14 +121,14 @@ class DataTransformation:
             
             # training DataFrame
             X_train = train_df.drop(columns=[TARGET_LABEL],axis=1)
-            y_train = train_df[TARGET_LABEL]
+            y_train = train_df[TARGET_LABEL].reset_index(drop=True)
             #print(X_train.columns)
             #print(y_train)
             #print(X_train.head())
             #X_train.to_csv(r"C:\Users\Daniy\Telco Customer Churn Prediction\testing2.csv", index=False,header=True)
             # testing DataFrame
             X_test = test_df.drop(columns=[TARGET_LABEL],axis=1)
-            y_test = test_df[TARGET_LABEL]
+            y_test = test_df[TARGET_LABEL].reset_index(drop=True)
             #print(X_test.columns)
             #print(y_test)   
             #print(X_train.head())

@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniy/Telco%20Customer%20Churn%20Prediction/mlruns/0/380e8b660d6944f388d6237b1c722247/artifacts
+end_time: 1735259757937
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 380e8b660d6944f388d6237b1c722247
+run_name: merciful-fly-357
+run_uuid: 380e8b660d6944f388d6237b1c722247
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1735259754730
+status: 3
+tags: []
+user_id: Daniy

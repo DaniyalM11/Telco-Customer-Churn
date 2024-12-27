@@ -1,9 +1,12 @@
 from ChurnPrediction.components.data_ingestion import DataIngestion
 from ChurnPrediction.components.data_validation import DataValidation
 from ChurnPrediction.components.data_transformation import DataTransformation
+from ChurnPrediction.components.model_trainer import ModelTrainer
 from ChurnPrediction.logging.logger import logging
 from ChurnPrediction.exception.exception import ChurnPredictionException 
 from ChurnPrediction.entity.config_entity import DataIngestionConfig,TrainingPipelineConfig, DataValidationConfig, DataTransformationConfig
+from ChurnPrediction.entity.config_entity import ModelTrainerConfig 
+ 
 
 import sys
 
@@ -28,6 +31,10 @@ if __name__ == "__main__":
         data_transformation_artifact = data_transformation.initiate_data_transformation()
         logging.info("Data transformation done")
         print(data_transformation_artifact)
+        logging.info("Model training started")
+        model_trainer_config = ModelTrainerConfig(training_pipeline_config)
+        model_trainer=ModelTrainer(model_trainer_config= model_trainer_config,data_transformation_artifact=data_transformation_artifact)
+        model_trainer.initiate_model_trainer()
 
     except Exception as e:
         raise ChurnPredictionException(e,sys)        

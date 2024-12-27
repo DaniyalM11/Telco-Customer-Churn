@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniy/Telco%20Customer%20Churn%20Prediction/mlruns/0/c12eb2184e38487b80d86299b572393d/artifacts
+end_time: 1735259739661
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c12eb2184e38487b80d86299b572393d
+run_name: enchanting-crane-827
+run_uuid: c12eb2184e38487b80d86299b572393d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1735259735494
+status: 3
+tags: []
+user_id: Daniy

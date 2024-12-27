@@ -4,7 +4,8 @@ import yaml
 from ChurnPrediction.exception.exception import ChurnPredictionException
 from ChurnPrediction.logging.logger import logging
 import numpy as np
-import pickle       
+import pickle    
+import pandas as pd   
 
 # function to find the latest file in the directory
 def churn_filename():
@@ -81,5 +82,27 @@ def save_object(file_path: str, obj: object) -> None:
         logging.info("Exited the save_object method of MainUtils class")
     except Exception as e:
         raise ChurnPredictionException(e,sys) from e
+    
+def load_object(file_path: str) -> object:
+    try:
+        logging.info(f"Entered the save object method of MainUtils class")
+        if not os.path.exists(file_path):
+            raise Exception(f"File not found: {file_path}")
+        with open(file_path, 'rb') as file_object:
+            obj = pickle.load(file_object)
+            return obj
+    except Exception as e:
+        raise ChurnPredictionException(e,sys) from e    
+
+def read_csv_data(file_path) -> pd.DataFrame:
+    """
+    read data from file
+    file_path: str location of file to read
+    return: pd.DataFrame data
+    """
+    try:
+        return pd.read_csv(file_path)
+    except Exception as e:
+        raise ChurnPredictionException(e,sys) from e     
 
                     

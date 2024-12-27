@@ -20,6 +20,9 @@ RANDOM_STATE: int = 42
 
 SCHEMA_FILE_PATH = os.path.join("data_schema","schema.yaml")
 
+SAVED_MODEL_DIR: str = "saved_model"
+MODEL_FILE_NAME: str = "model.pkl"
+
 """
 Data Ingestion related constant start with DATA_INGESTION VAR NAME
 """
@@ -59,4 +62,17 @@ DATA_TRANSFORMATION_VIF_REPORT_DIR: str = "VIF_report"
 DATA_TRANSFORMATION_REPORT_BEFORE_FILE_NAME: str = "vif_report_before.yaml"
 DATA_TRANSFORMATION_REPORT_AFTER_FILE_NAME: str = "vif_report_after.yaml"
 DATA_TRANSFORMATION_COLUMNS_TO_DROP: list = ["customerID"]
+
+"""
+Model Trainer related constant start with MODEL_TRAINER VAR NAME 
+"""
+
+MODEL_TRAINER_DIR_NAME: str = "model_trainer"
+MODEL_TRAINER_TRAINED_MODEL_DIR: str = "trained_model"
+MODEL_TRAINER_MODEL_FILE_NAME: str = "model.pkl"
+MODEL_TRAINER_METRICS_FILE_NAME: str = "metrics.yaml"
+MODEL_TRAINER_METRICS_DIR_NAME: str = "metrics"
+
+
+
 

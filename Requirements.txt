@@ -12,5 +12,5 @@ catboost
 typing
 scipy
 pyaml
-
+mlflow
 ##-e .

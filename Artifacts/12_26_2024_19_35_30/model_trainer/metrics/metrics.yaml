@@ -1,0 +1,73 @@
+Accuracy:
+  0: 0.7375533428165008
+  1: 0.7475106685633002
+  2: 0.6955903271692745
+  3: 0.7467994310099573
+Best_Params:
+  0:
+    C: 1.0
+    class_weight: balanced
+    penalty: l1
+  1:
+    class_weight: balanced
+    max_depth: 5
+    min_samples_leaf: 2
+    min_samples_split: 5
+    n_estimators: 100
+  2:
+    colsample_bytree: 0.6
+    learning_rate: 0.01
+    max_depth: 3
+    n_estimators: 100
+    scale_pos_weight: !!python/object/apply:numpy.core.multiarray.scalar
+    - &id001 !!python/object/apply:numpy.dtype
+      args:
+      - f8
+      - false
+      - true
+      state: !!python/tuple
+      - 3
+      - <
+      - null
+      - null
+      - null
+      - -1
+      - -1
+      - 0
+    - !!binary |
+      A7jx2t2GCkA=
+    subsample: 0.8
+  3:
+    learning_rate: 0.05
+    max_depth: 5
+    n_estimators: 100
+    num_leaves: 63
+    scale_pos_weight: !!python/object/apply:numpy.core.multiarray.scalar
+    - *id001
+    - !!binary |
+      WBl0Ng4bBkA=
+F1:
+  0: 0.6152241918665277
+  1: 0.6274921301154249
+  2: 0.6066176470588235
+  3: 0.6252631578947369
+Model:
+  0: LogisticRegression
+  1: RandomForest
+  2: XGBoost
+  3: LightGBM
+Precision:
+  0: 0.5042735042735043
+  1: 0.5164075993091537
+  2: 0.46218487394957986
+  3: 0.515625
+ROC_AUC:
+  0: 0.8419454462546117
+  1: 0.8434572296148903
+  2: 0.8399880300957593
+  3: 0.8410412262156448
+Recall:
+  0: 0.7887700534759359
+  1: 0.7994652406417112
+  2: 0.8823529411764706
+  3: 0.7941176470588235

@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniy/Telco%20Customer%20Churn%20Prediction/mlruns/0/b254fb437a02486ba65a5d6b52dbf94d/artifacts
+end_time: 1735259939452
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: b254fb437a02486ba65a5d6b52dbf94d
+run_name: secretive-horse-361
+run_uuid: b254fb437a02486ba65a5d6b52dbf94d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1735259936045
+status: 3
+tags: []
+user_id: Daniy
