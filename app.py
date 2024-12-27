@@ -1,7 +1,7 @@
 import sys
 import os
 
-from ChurnPrediction.exception.exception import NetworkSecurityException
+from ChurnPrediction.exception.exception import ChurnPredictionException
 from ChurnPrediction.logging.logger import logging
 from ChurnPrediction.pipeline.training_pipeline import TrainingPipeline
 
@@ -28,7 +28,7 @@ async def train_route():
         train_pipeline.run_pipeline()
         return Response("Training is successful")
     except Exception as e:
-        raise NetworkSecurityException(e,sys)
+        raise ChurnPredictionException(e,sys) from e
     
 @app.post("/predict")
 async def predict_route(request: Request,file: UploadFile = File(...)):
@@ -39,7 +39,7 @@ async def predict_route(request: Request,file: UploadFile = File(...)):
         final_model=load_object("final_model/model.pkl")
         
         print(df.iloc[0])
-        y_pred = network_model.predict(df)
+        y_pred = ChurnPredictionModel.predict(df)
         print(y_pred)
         df['predicted_column'] = y_pred
         print(df['predicted_column'])
@@ -51,7 +51,7 @@ async def predict_route(request: Request,file: UploadFile = File(...)):
         return templates.TemplateResponse("table.html", {"request": request, "table": table_html})
         
     except Exception as e:
-            raise NetworkSecurityException(e,sys)
+            raise ChurnPredictionException(e,sys) from e
 
     
 if __name__=="__main__":
