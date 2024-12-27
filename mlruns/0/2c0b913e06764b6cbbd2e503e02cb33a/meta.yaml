@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniy/Telco%20Customer%20Churn%20Prediction/mlruns/0/2c0b913e06764b6cbbd2e503e02cb33a/artifacts
+end_time: 1735337832895
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 2c0b913e06764b6cbbd2e503e02cb33a
+run_name: kindly-trout-11
+run_uuid: 2c0b913e06764b6cbbd2e503e02cb33a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1735337829055
+status: 3
+tags: []
+user_id: Daniy

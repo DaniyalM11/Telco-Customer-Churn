@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniy/Telco%20Customer%20Churn%20Prediction/mlruns/0/d127669f13d543e982b07ebf3d1a0b4f/artifacts
+end_time: 1735337633263
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d127669f13d543e982b07ebf3d1a0b4f
+run_name: big-vole-372
+run_uuid: d127669f13d543e982b07ebf3d1a0b4f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1735337627648
+status: 3
+tags: []
+user_id: Daniy

@@ -194,7 +194,7 @@ class DataTransformation:
             #    pd.DataFrame(X_test_cat_ohe, columns=cat_ohe_cols)  
             #], axis=1)
 
-            transformed_x_train_df.to_csv(r"C:\Users\Daniy\Telco Customer Churn Prediction\testing.csv", index=False,header=True)
+            #transformed_x_train_df.to_csv(r"C:\Users\Daniy\Telco Customer Churn Prediction\testing.csv", index=False,header=True)
 
                         
             #apply VIF
