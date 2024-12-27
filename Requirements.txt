@@ -13,4 +13,8 @@ typing
 scipy
 pyaml
 mlflow
+apache-airflow
+fastapi
+uvicorn
+
 ##-e .

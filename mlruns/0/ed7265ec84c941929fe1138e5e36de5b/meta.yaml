@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniy/Telco%20Customer%20Churn%20Prediction/mlruns/0/ed7265ec84c941929fe1138e5e36de5b/artifacts
+end_time: 1735332170515
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: ed7265ec84c941929fe1138e5e36de5b
+run_name: gregarious-chimp-863
+run_uuid: ed7265ec84c941929fe1138e5e36de5b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1735332166345
+status: 3
+tags: []
+user_id: Daniy

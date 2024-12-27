@@ -1,0 +1,62 @@
+[2024-12-27 15:39:30,318] - matplotlib - DEBUG - matplotlib data path: C:\Users\Daniy\Telco Customer Churn Prediction\venv\Lib\site-packages\matplotlib\mpl-data
+[2024-12-27 15:39:30,322] - matplotlib - DEBUG - CONFIGDIR=C:\Users\Daniy\.matplotlib
+[2024-12-27 15:39:30,323] - matplotlib - DEBUG - interactive is False
+[2024-12-27 15:39:30,323] - matplotlib - DEBUG - platform is win32
+[2024-12-27 15:39:30,345] - graphviz._tools - DEBUG - deprecate positional args: graphviz.backend.piping.pipe(['renderer', 'formatter', 'neato_no_op', 'quiet'])
+[2024-12-27 15:39:30,345] - graphviz._tools - DEBUG - deprecate positional args: graphviz.backend.rendering.render(['renderer', 'formatter', 'neato_no_op', 'quiet'])
+[2024-12-27 15:39:30,347] - graphviz._tools - DEBUG - deprecate positional args: graphviz.backend.unflattening.unflatten(['stagger', 'fanout', 'chain', 'encoding'])
+[2024-12-27 15:39:30,347] - graphviz._tools - DEBUG - deprecate positional args: graphviz.backend.viewing.view(['quiet'])
+[2024-12-27 15:39:30,351] - graphviz._tools - DEBUG - deprecate positional args: graphviz.quoting.quote(['is_html_string', 'is_valid_id', 'dot_keywords', 'endswith_odd_number_of_backslashes', 'escape_unescaped_quotes'])
+[2024-12-27 15:39:30,351] - graphviz._tools - DEBUG - deprecate positional args: graphviz.quoting.a_list(['kwargs', 'attributes'])
+[2024-12-27 15:39:30,351] - graphviz._tools - DEBUG - deprecate positional args: graphviz.quoting.attr_list(['kwargs', 'attributes'])
+[2024-12-27 15:39:30,351] - graphviz._tools - DEBUG - deprecate positional args: graphviz.dot.Dot.clear(['keep_attrs'])
+[2024-12-27 15:39:30,351] - graphviz._tools - DEBUG - deprecate positional args: graphviz.dot.Dot.__iter__(['subgraph'])
+[2024-12-27 15:39:30,351] - graphviz._tools - DEBUG - deprecate positional args: graphviz.dot.Dot.node(['_attributes'])
+[2024-12-27 15:39:30,351] - graphviz._tools - DEBUG - deprecate positional args: graphviz.dot.Dot.edge(['_attributes'])
+[2024-12-27 15:39:30,351] - graphviz._tools - DEBUG - deprecate positional args: graphviz.dot.Dot.attr(['_attributes'])
+[2024-12-27 15:39:30,351] - graphviz._tools - DEBUG - deprecate positional args: graphviz.dot.Dot.subgraph(['name', 'comment', 'graph_attr', 'node_attr', 'edge_attr', 'body'])
+[2024-12-27 15:39:30,352] - graphviz._tools - DEBUG - deprecate positional args: graphviz.piping.Pipe._pipe_legacy(['renderer', 'formatter', 'neato_no_op', 'quiet'])
+[2024-12-27 15:39:30,353] - graphviz._tools - DEBUG - deprecate positional args: graphviz.saving.Save.save(['directory'])
+[2024-12-27 15:39:30,353] - graphviz._tools - DEBUG - deprecate positional args: graphviz.rendering.Render.render(['directory', 'view', 'cleanup', 'format', 'renderer', 'formatter', 'neato_no_op', 'quiet', 'quiet_view'])
+[2024-12-27 15:39:30,354] - graphviz._tools - DEBUG - deprecate positional args: graphviz.rendering.Render.view(['directory', 'cleanup', 'quiet', 'quiet_view'])
+[2024-12-27 15:39:30,354] - graphviz._tools - DEBUG - deprecate positional args: graphviz.unflattening.Unflatten.unflatten(['stagger', 'fanout', 'chain'])
+[2024-12-27 15:39:30,354] - graphviz._tools - DEBUG - deprecate positional args: graphviz.graphs.BaseGraph.__init__(['comment', 'filename', 'directory', 'format', 'engine', 'encoding', 'graph_attr', 'node_attr', 'edge_attr', 'body', 'strict'])
+[2024-12-27 15:39:30,355] - graphviz._tools - DEBUG - deprecate positional args: graphviz.sources.Source.from_file(['directory', 'format', 'engine', 'encoding', 'renderer', 'formatter'])
+[2024-12-27 15:39:30,355] - graphviz._tools - DEBUG - deprecate positional args: graphviz.sources.Source.__init__(['filename', 'directory', 'format', 'engine', 'encoding'])
+[2024-12-27 15:39:30,355] - graphviz._tools - DEBUG - deprecate positional args: graphviz.sources.Source.save(['directory'])
+[2024-12-27 15:39:32,204] - root - INFO - Initiating ingestion of data
+[2024-12-27 15:39:32,261] - root - INFO - Train and Test data split done
+[2024-12-27 15:39:32,261] - root - INFO - Exited split_data_as_train_test method of Data_Ingestion class
+[2024-12-27 15:39:32,261] - root - INFO - exporting created for train and test data to filepath
+[2024-12-27 15:39:32,293] - root - INFO - exported train and test data to filepath
+[2024-12-27 15:39:32,294] - root - INFO - Data ingestion done
+[2024-12-27 15:39:32,297] - root - INFO - Initiating validation of data
+[2024-12-27 15:39:32,297] - root - INFO - Initiating data validation
+[2024-12-27 15:39:32,329] - root - INFO - Required number of columns in the schema:21
+[2024-12-27 15:39:32,329] - root - INFO - Dataframe has columns:21
+[2024-12-27 15:39:32,329] - root - INFO - Number of columns in the dataframe matches the schema
+[2024-12-27 15:39:32,329] - root - INFO - Required number of columns in the schema:21
+[2024-12-27 15:39:32,329] - root - INFO - Dataframe has columns:21
+[2024-12-27 15:39:32,329] - root - INFO - Number of columns in the dataframe matches the schema
+[2024-12-27 15:39:32,515] - root - INFO - Data validation done
+[2024-12-27 15:39:32,515] - root - INFO - Initiating transformation of data
+[2024-12-27 15:39:32,515] - root - INFO - Entered initiate_data_transformation method of DataTransformation class
+[2024-12-27 15:39:32,516] - root - INFO - Starting data transformation
+[2024-12-27 15:39:32,559] - root - INFO - Entered get_data_transformer_object method of DataTransformation class
+[2024-12-27 15:39:32,560] - root - INFO - Initialized transformation pipeline successfully.
+[2024-12-27 15:39:33,407] - root - INFO - Entered the save_object method of MainUtils class
+[2024-12-27 15:39:33,408] - root - INFO - Exited the save_object method of MainUtils class
+[2024-12-27 15:39:33,409] - root - INFO - Data transformation done
+[2024-12-27 15:39:33,409] - root - INFO - Model training started
+[2024-12-27 15:39:35,031] - git.cmd - DEBUG - Popen(['git', 'version'], cwd=C:\Users\Daniy\Telco Customer Churn Prediction, stdin=None, shell=False, universal_newlines=False)
+[2024-12-27 15:39:35,064] - git.cmd - DEBUG - Popen(['git', 'version'], cwd=C:\Users\Daniy\Telco Customer Churn Prediction, stdin=None, shell=False, universal_newlines=False)
+[2024-12-27 15:39:35,098] - git.cmd - DEBUG - Popen(['git', 'check-ignore', 'C:\\Users\\Daniy\\Telco Customer Churn Prediction'], cwd=C:\Users\Daniy\Telco Customer Churn Prediction, stdin=None, shell=False, universal_newlines=False)
+[2024-12-27 15:39:35,141] - git.cmd - DEBUG - Popen(['git', 'cat-file', '--batch-check'], cwd=C:\Users\Daniy\Telco Customer Churn Prediction, stdin=<valid stream>, shell=False, universal_newlines=False)
+[2024-12-27 15:39:41,536] - root - INFO - Entered the save_object method of MainUtils class
+[2024-12-27 15:39:41,537] - root - INFO - Exited the save_object method of MainUtils class
+[2024-12-27 15:39:59,836] - root - INFO - Entered the save_object method of MainUtils class
+[2024-12-27 15:39:59,839] - root - INFO - Exited the save_object method of MainUtils class
+[2024-12-27 15:42:50,516] - root - INFO - Entered the save_object method of MainUtils class
+[2024-12-27 15:42:50,520] - root - INFO - Exited the save_object method of MainUtils class
+[2024-12-27 15:42:58,694] - root - INFO - Entered the save_object method of MainUtils class
+[2024-12-27 15:42:58,699] - root - INFO - Exited the save_object method of MainUtils class

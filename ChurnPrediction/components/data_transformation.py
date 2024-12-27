@@ -6,6 +6,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.compose import ColumnTransformer
 from statsmodels.stats.outliers_influence import variance_inflation_factor
+from sklearn.base import TransformerMixin, BaseEstimator
 
 from ChurnPrediction.constant.training_pipeline import TARGET_LABEL,DATA_TRANSFORMATION_COLUMNS_TO_FLOAT64, DATA_TRANSFORMATION_COLUMNS_TO_STR_FOR_BINARY_DECISION
 from ChurnPrediction.constant.training_pipeline import DATA_TRANSFORMATION_ROWS_DROPPED_BASEDS_ON_NULL_VALUES_OF_COLUMN,DATA_TRANSFORMATION_COLUMNS_TO_DROP,SCHEMA_FILE_PATH
@@ -15,7 +16,7 @@ from ChurnPrediction.entity.artifact_entity import DataTransformationArtifact, D
 from ChurnPrediction.entity.config_entity import DataTransformationConfig
 from ChurnPrediction.exception.exception import ChurnPredictionException
 from ChurnPrediction.logging.logger import logging
-from ChurnPrediction.utils.main_utils import save_numpy_array_data, save_object
+from ChurnPrediction.utils.main_utils import save_numpy_array_data, save_object,data_transformations
 from ChurnPrediction.utils.main_utils import read_yaml_file,write_yaml_file, read_csv_data
 
 
@@ -99,25 +100,29 @@ class DataTransformation:
             train_df = read_csv_data(self.data_validation_artifact.valid_train_file_path)
             test_df = read_csv_data(self.data_validation_artifact.valid_test_file_path)
 
-            for df in [train_df, test_df]:
-                for item in DATA_TRANSFORMATION_COLUMNS_TO_FLOAT64:
-                    df[item] = pd.to_numeric(df[item], errors='coerce').astype('float64')
+            #for df in [train_df, test_df]:
+            #    for item in DATA_TRANSFORMATION_COLUMNS_TO_FLOAT64:
+            #        df[item] = pd.to_numeric(df[item], errors='coerce').astype('float64')
 
-            for df in [train_df, test_df]:
-                for item in DATA_TRANSFORMATION_ROWS_DROPPED_BASEDS_ON_NULL_VALUES_OF_COLUMN:
-                    df.dropna(subset=[item], inplace = True)
+            #for df in [train_df, test_df]:
+            #    for item in DATA_TRANSFORMATION_ROWS_DROPPED_BASEDS_ON_NULL_VALUES_OF_COLUMN:
+            #        df.dropna(subset=[item], inplace = True)
 
-            for df in [train_df, test_df]:
-                for item in DATA_TRANSFORMATION_COLUMNS_TO_STR_FOR_BINARY_DECISION:
-                    df[item] = df[item].astype(str)
-                    df[item] = df[item].apply(lambda x: 'Yes' if x == '1' else 'No')
+            #for df in [train_df, test_df]:
+            #    for item in DATA_TRANSFORMATION_COLUMNS_TO_STR_FOR_BINARY_DECISION:
+            #        df[item] = df[item].astype(str)
+            #        df[item] = df[item].apply(lambda x: 'Yes' if x == '1' else 'No')
 
-            for df in [train_df, test_df]:
-                df.drop(columns=DATA_TRANSFORMATION_COLUMNS_TO_DROP, inplace=True)     
+            #for df in [train_df, test_df]:
+            #    df.drop(columns=DATA_TRANSFORMATION_COLUMNS_TO_DROP, inplace=True)     
+
+            train_df = data_transformations(train_df,DATA_TRANSFORMATION_COLUMNS_TO_FLOAT64,DATA_TRANSFORMATION_ROWS_DROPPED_BASEDS_ON_NULL_VALUES_OF_COLUMN,DATA_TRANSFORMATION_COLUMNS_TO_STR_FOR_BINARY_DECISION,DATA_TRANSFORMATION_COLUMNS_TO_DROP)
+            test_df = data_transformations(test_df,DATA_TRANSFORMATION_COLUMNS_TO_FLOAT64,DATA_TRANSFORMATION_ROWS_DROPPED_BASEDS_ON_NULL_VALUES_OF_COLUMN,DATA_TRANSFORMATION_COLUMNS_TO_STR_FOR_BINARY_DECISION,DATA_TRANSFORMATION_COLUMNS_TO_DROP)    
 
             for df in [train_df, test_df]:
                 df[TARGET_LABEL] = df[TARGET_LABEL].apply(lambda x: '1' if x == 'Yes' else '0')
-                df[TARGET_LABEL] = df[TARGET_LABEL].astype(int)     
+                df[TARGET_LABEL] = df[TARGET_LABEL].astype(int)  
+               
             
             # training DataFrame
             X_train = train_df.drop(columns=[TARGET_LABEL],axis=1)
@@ -149,37 +154,47 @@ class DataTransformation:
             preprocessor_object = preprocessor.fit(X_train)
             transformed_x_train = preprocessor_object.transform(X_train)
             transformed_x_test = preprocessor_object.transform(X_test)
+
+            # Get the feature names from the preprocessor
+            feature_names = preprocessor.named_steps['transformer'].get_feature_names_out()
+
+            # Convert transformed_x_train and transformed_x_test to DataFrames
+            transformed_x_train_df = pd.DataFrame(transformed_x_train, columns=feature_names)
+            transformed_x_test_df = pd.DataFrame(transformed_x_test, columns=feature_names)
+
+            transformed_x_train_df.columns = transformed_x_train_df.columns.str.replace(r"^(num__|cat__)", "", regex=True)
+            transformed_x_test_df.columns = transformed_x_test_df.columns.str.replace(r"^(num__|cat__)", "", regex=True)
             #print(type(transformed_x_train))
             #print(type(transformed_x_test))
             ##########################################################################################################
 
             # One Hot Encoding
-            encoder = OneHotEncoder(drop='first', sparse_output=False)
-            encoder.fit(X_train[cat_cols])
+            #encoder = OneHotEncoder(drop='first', sparse_output=False)
+            #encoder.fit(X_train[cat_cols])
 
-            X_train_cat_ohe = encoder.transform(X_train[cat_cols])
-            X_test_cat_ohe = encoder.transform(X_test[cat_cols])
-            cat_ohe_cols = encoder.get_feature_names_out(cat_cols)
+            #X_train_cat_ohe = encoder.transform(X_train[cat_cols])
+            #X_test_cat_ohe = encoder.transform(X_test[cat_cols])
+            #cat_ohe_cols = encoder.get_feature_names_out(cat_cols)
 
             # Standard Scaling for Numerical Features
-            scaler = StandardScaler()
-            scaler.fit(X_train[num_cols])
+            #scaler = StandardScaler()
+            #scaler.fit(X_train[num_cols])
 
-            X_train_num_scaled = pd.DataFrame(scaler.transform(X_train[num_cols]), columns=num_cols)
-            X_test_num_scaled = pd.DataFrame(scaler.transform(X_test[num_cols]), columns=num_cols)
+            #X_train_num_scaled = pd.DataFrame(scaler.transform(X_train[num_cols]), columns=num_cols)
+            #X_test_num_scaled = pd.DataFrame(scaler.transform(X_test[num_cols]), columns=num_cols)
 
             # Concatenating Scaled Numerical and Encoded Categorical Features
-            transformed_x_train_df = pd.concat([
-                X_train_num_scaled.reset_index(drop=True),  
-                pd.DataFrame(X_train_cat_ohe, columns=cat_ohe_cols)  
-            ], axis=1)
+            #transformed_x_train_df = pd.concat([
+            #    X_train_num_scaled.reset_index(drop=True),  
+            #    pd.DataFrame(X_train_cat_ohe, columns=cat_ohe_cols)  
+            #], axis=1)
 
-            transformed_x_test_df = pd.concat([
-                X_test_num_scaled.reset_index(drop=True), 
-                pd.DataFrame(X_test_cat_ohe, columns=cat_ohe_cols)  
-            ], axis=1)
+            #transformed_x_test_df = pd.concat([
+            #    X_test_num_scaled.reset_index(drop=True), 
+            #    pd.DataFrame(X_test_cat_ohe, columns=cat_ohe_cols)  
+            #], axis=1)
 
-            #transformed_x_train.to_csv(r"C:\Users\Daniy\Telco Customer Churn Prediction\testing.csv", index=False,header=True)
+            transformed_x_train_df.to_csv(r"C:\Users\Daniy\Telco Customer Churn Prediction\testing.csv", index=False,header=True)
 
                         
             #apply VIF

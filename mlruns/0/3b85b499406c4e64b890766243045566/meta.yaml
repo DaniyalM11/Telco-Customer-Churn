@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniy/Telco%20Customer%20Churn%20Prediction/mlruns/0/3b85b499406c4e64b890766243045566/artifacts
+end_time: 1735331981535
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 3b85b499406c4e64b890766243045566
+run_name: angry-shrike-853
+run_uuid: 3b85b499406c4e64b890766243045566
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1735331975354
+status: 3
+tags: []
+user_id: Daniy

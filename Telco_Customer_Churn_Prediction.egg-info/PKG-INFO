@@ -16,5 +16,8 @@ Requires-Dist: lightgbm
 Requires-Dist: catboost
 Requires-Dist: typing
 Requires-Dist: scipy
-Requires-Dist: dill
 Requires-Dist: pyaml
+Requires-Dist: mlflow
+Requires-Dist: apache-airflow
+Requires-Dist: fastapi
+Requires-Dist: uvicorn

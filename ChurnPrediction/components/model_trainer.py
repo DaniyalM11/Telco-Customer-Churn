@@ -190,7 +190,12 @@ class ModelTrainer:
 
         # Convert to DataFrame and display
         results_df = pd.DataFrame(results)
-        write_yaml_file(self.model_trainer_config.model_metrics_file_path, results_df.to_dict())        
+
+        results_dict=results_df.to_dict(orient='list')
+        custom_order = ['Model','Best_Params','Accuracy','Precision','Recall','F1','ROC_AUC']
+        result_sorted_dict = {key: results_dict[key] for key in custom_order}
+
+        write_yaml_file(self.model_trainer_config.model_metrics_file_path, result_sorted_dict)        
 
         #model_report:dict=evaluate_models(X_train=X_train,y_train=y_train,X_test=X_test,y_test=y_test,models=models)
 

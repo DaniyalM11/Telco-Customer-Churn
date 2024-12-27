@@ -11,5 +11,8 @@ lightgbm
 catboost
 typing
 scipy
-dill
 pyaml
+mlflow
+apache-airflow
+fastapi
+uvicorn

@@ -103,6 +103,25 @@ def read_csv_data(file_path) -> pd.DataFrame:
     try:
         return pd.read_csv(file_path)
     except Exception as e:
-        raise ChurnPredictionException(e,sys) from e     
+        raise ChurnPredictionException(e,sys) from e
+
+def data_transformations(given_df,obj1,obj2,obj3,obj4) -> pd.DataFrame:
+    for df in [given_df]:
+        for item in obj1:
+            df[item] = pd.to_numeric(df[item], errors='coerce').astype('float64')
+
+    for df in [given_df]:
+        for item in obj2:
+            df.dropna(subset=[item], inplace = True)
+
+    for df in [given_df]:
+        for item in obj3:
+            df[item] = df[item].astype(str)
+            df[item] = df[item].apply(lambda x: 'Yes' if x == '1' else 'No')
+
+    for df in [given_df]:
+        df.drop(columns=obj4, inplace=True)     
+
+    return given_df 
 
                     
