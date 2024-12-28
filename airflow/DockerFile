@@ -1,0 +1,24 @@
+# Use the official Airflow base image
+FROM apache/airflow:2.6.2
+
+# Set environment variables for Airflow
+ENV AIRFLOW_HOME=/opt/airflow
+ENV AIRFLOW__CORE__LOAD_EXAMPLES=False
+
+# Copy your DAGs into the Airflow directory
+COPY dags/ ${AIRFLOW_HOME}/dags/
+
+# Copy your requirements file if you need to install additional dependencies
+COPY requirements.txt ${AIRFLOW_HOME}/requirements.txt
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r ${AIRFLOW_HOME}/requirements.txt
+
+# Ensure the correct permissions
+RUN chown -R airflow: ${AIRFLOW_HOME}
+
+# Set the entrypoint command
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+
+# Command to start Airflow
+CMD ["bash", "-c", "airflow db init && airflow webserver & airflow scheduler"]

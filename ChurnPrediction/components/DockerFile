@@ -1,0 +1,15 @@
+# Use a lightweight Python image
+FROM python:3.9-slim
+
+# Set working directory inside the container
+WORKDIR /app
+
+# Copy the entire components folder and other necessary files
+COPY ./ChurnPrediction /app/ChurnPrediction
+COPY ./Requirements.txt /app/
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r Requirements.txt
+
+# Default command can be overridden in docker-compose.yml
+CMD ["python", "/app/ChurnPrediction/components/data_ingestion.py"]

@@ -1,0 +1,55 @@
+version: "3.8"
+
+services:
+  airflow:
+    image: apache/airflow:2.6.0
+    container_name: airflow
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+
+  data_ingestion:
+    build:
+      context: .
+      dockerfile: ./components/Dockerfile
+    volumes:
+      - ./Batch_Data:/app/Batch_Data
+      - ./Artifacts:/app/Artifacts
+    depends_on:
+      - airflow
+    command: ["python", "/app/components/data_ingestion.py"]
+
+  data_validation:
+    build:
+      context: .
+      dockerfile: ./components/Dockerfile
+    volumes:
+      - ./Artifacts:/app/Artifacts
+    depends_on:
+      - data_ingestion
+    command: ["python", "/app/components/data_validation.py"]
+
+  data_transformation:
+    build:
+      context: .
+      dockerfile: ./components/Dockerfile
+    volumes:
+      - ./Artifacts:/app/Artifacts
+    depends_on:
+      - data_validation
+    command: ["python", "/app/components/data_transformation.py"]
+
+  model_training:
+    build:
+      context: .
+      dockerfile: ./components/Dockerfile
+    volumes:
+      - ./Artifacts:/app/Artifacts
+      - ./final_model:/app/final_model
+    depends_on:
+      - data_transformation
+    command: ["python", "/app/components/model_trainer.py"]
