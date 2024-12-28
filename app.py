@@ -61,16 +61,9 @@ async def predict_route(request: Request,file: UploadFile = File(...)):
         transformed_df.columns = transformed_df.columns.str.replace(r"^(num__|cat__)", "", regex=True)
         transformed_df = transformed_df[read_yaml_file(SCHEMA_FILE_PATH,'columns_selected')]
         y_pred = final_model.predict(transformed_df)
-        #print(df.iloc[0])
-        #y_pred = ChurnPredictionModel.predict(df)
-        print(y_pred)
         df['predicted_column'] = y_pred
-        print(df['predicted_column'])
-        #df['predicted_column'].replace(-1, 0)
-        #return df.to_json()
         df.to_csv('prediction_output/output.csv')
         table_html = df.to_html(classes='table table-striped')
-        #print(table_html)
         return templates.TemplateResponse("table.html", {"request": request, "table": table_html})
         
     except Exception as e:
