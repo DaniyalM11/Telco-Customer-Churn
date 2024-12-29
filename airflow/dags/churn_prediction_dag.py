@@ -1,3 +1,6 @@
+import sys
+sys.path.insert(0, '/opt/airflow')
+
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.python import PythonOperator
@@ -12,9 +15,8 @@ from ChurnPrediction.entity.config_entity import (
     DataTransformationConfig,
     ModelTrainerConfig
 )
-from ChurnPrediction.logging.logger import logging
+from ChurnPrediction.custom_logging.logger import logging
 from ChurnPrediction.exception.exception import ChurnPredictionException
-import sys
 
 # Define the pipeline configuration
 training_pipeline_config = TrainingPipelineConfig()

@@ -1,55 +1,90 @@
 version: "3.8"
 
 services:
-  airflow:
-    image: apache/airflow:2.6.0
-    container_name: airflow
+  airflow-postgres:
+    image: postgres:13
+    container_name: airflow-postgres
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  airflow-init:
+    image: ${AIRFLOW_IMAGE_NAME:-extending_airflow:latest}
+    container_name: airflow-init
+    depends_on:
+      - airflow-postgres
+    environment:
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@airflow-postgres:5432/airflow
+      - PYTHONPATH=/opt/airflow
+    command: ["airflow", "db", "init"]
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+      - ../ChurnPrediction:/opt/airflow/ChurnPrediction
+      - ../Artifacts:/opt/airflow/Artifacts
+      - ../Batch_Data:/opt/airflow/Batch_Data
+      - ../data_schema:/opt/airflow/data_schema
+      - ../final_model:/opt/airflow/final_model
+      - ../prediction_output:/opt/airflow/prediction_output
+      - "../Telco Customer Data:/opt/airflow/Telco_Customer_Data"
+      - ../logs:/opt/airflow/logs
+      - ../mlruns:/opt/airflow/mlruns      
+
+  airflow-webserver:
+    image: ${AIRFLOW_IMAGE_NAME:-extending_airflow:latest}
+    container_name: airflow-webserver
+    depends_on:
+      - airflow-init
     ports:
       - "8080:8080"
-    volumes:
-      - ./airflow/dags:/opt/airflow/dags
-      - ./airflow/logs:/opt/airflow/logs
     environment:
-      AIRFLOW__CORE__EXECUTOR: LocalExecutor
-
-  data_ingestion:
-    build:
-      context: .
-      dockerfile: ./components/Dockerfile
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@airflow-postgres:5432/airflow
+      - PYTHONPATH=/opt/airflow
+    command: ["airflow", "webserver"]
+    restart: always
     volumes:
-      - ./Batch_Data:/app/Batch_Data
-      - ./Artifacts:/app/Artifacts
-    depends_on:
-      - airflow
-    command: ["python", "/app/components/data_ingestion.py"]
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+      - ../ChurnPrediction:/opt/airflow/ChurnPrediction
+      - ../Artifacts:/opt/airflow/Artifacts
+      - ../Batch_Data:/opt/airflow/Batch_Data
+      - ../data_schema:/opt/airflow/data_schema
+      - ../final_model:/opt/airflow/final_model
+      - ../prediction_output:/opt/airflow/prediction_output
+      - "../Telco Customer Data:/opt/airflow/Telco_Customer_Data"
+      - ../logs:/opt/airflow/logs
+      - ../mlruns:/opt/airflow/mlruns      
 
-  data_validation:
-    build:
-      context: .
-      dockerfile: ./components/Dockerfile
-    volumes:
-      - ./Artifacts:/app/Artifacts
+  airflow-scheduler:
+    image: ${AIRFLOW_IMAGE_NAME:-extending_airflow:latest}
+    container_name: airflow-scheduler
     depends_on:
-      - data_ingestion
-    command: ["python", "/app/components/data_validation.py"]
+      - airflow-init
+    environment:
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@airflow-postgres:5432/airflow
+      - PYTHONPATH=/opt/airflow
+    command: ["airflow", "scheduler"]
+    restart: always
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+      - ../ChurnPrediction:/opt/airflow/ChurnPrediction
+      - ../Artifacts:/opt/airflow/Artifacts
+      - ../Batch_Data:/opt/airflow/Batch_Data
+      - ../data_schema:/opt/airflow/data_schema
+      - ../final_model:/opt/airflow/final_model
+      - ../prediction_output:/opt/airflow/prediction_output
+      - "../Telco Customer Data:/opt/airflow/Telco_Customer_Data"
+      - ../logs:/opt/airflow/logs
+      - ../mlruns:/opt/airflow/mlruns
 
-  data_transformation:
-    build:
-      context: .
-      dockerfile: ./components/Dockerfile
-    volumes:
-      - ./Artifacts:/app/Artifacts
-    depends_on:
-      - data_validation
-    command: ["python", "/app/components/data_transformation.py"]
-
-  model_training:
-    build:
-      context: .
-      dockerfile: ./components/Dockerfile
-    volumes:
-      - ./Artifacts:/app/Artifacts
-      - ./final_model:/app/final_model
-    depends_on:
-      - data_transformation
-    command: ["python", "/app/components/model_trainer.py"]
+volumes:
+  postgres_data:

@@ -1,24 +1,60 @@
-# Use the official Airflow base image
-FROM apache/airflow:2.6.2
+# Use a Python 3.10 base image
+#FROM python:3.10-slim
 
-# Set environment variables for Airflow
+# Install system dependencies for Airflow
+#RUN apt-get update && apt-get install -y \
+#    build-essential \
+#    default-libmysqlclient-dev \
+#    libpq-dev \
+#    && apt-get clean \
+#    && rm -rf /var/lib/apt/lists/*
+
+# Install Airflow
+#RUN pip install apache-airflow==2.10.4 \
+#    psycopg2-binary
+
+
+# Start with the official Airflow image
+FROM apache/airflow:2.10.4
+
+# Set environment variables
 ENV AIRFLOW_HOME=/opt/airflow
-ENV AIRFLOW__CORE__LOAD_EXAMPLES=False
+ENV PYTHONPATH=/opt/airflow
 
-# Copy your DAGs into the Airflow directory
-COPY dags/ ${AIRFLOW_HOME}/dags/
+# Copy the entire project directory into the container
+COPY . /opt/airflow
 
-# Copy your requirements file if you need to install additional dependencies
-COPY requirements.txt ${AIRFLOW_HOME}/requirements.txt
+# Navigate to the ChurnPrediction directory
+WORKDIR /opt/airflow
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r ${AIRFLOW_HOME}/requirements.txt
+# Install the custom module
+RUN pip install .
 
-# Ensure the correct permissions
-RUN chown -R airflow: ${AIRFLOW_HOME}
+# Install PostgreSQL client library
+RUN pip install psycopg2-binary
 
-# Set the entrypoint command
-ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+# Switch to root user
+USER root
 
-# Command to start Airflow
-CMD ["bash", "-c", "airflow db init && airflow webserver & airflow scheduler"]
+RUN apt-get update && apt-get install -y libgomp1
+
+# Switch back to airflow user
+USER airflow
+
+# Copy the requirements file into the container
+COPY Requirements.txt /opt/airflow/Requirements.txt
+
+# Install Python dependencies from requirements.txt
+RUN pip install --no-cache-dir -r /opt/airflow/Requirements.txt
+#
+# Copy DAGs into the Airflow container
+COPY ./dags /opt/airflow/dags
+
+# Copy plugins (if any)
+COPY ./plugins /opt/airflow/plugins
+
+# Expose ports for the Airflow webserver
+EXPOSE 8080
+
+# Command to start Airflow (only for standalone setups)
+CMD ["standalone"]
