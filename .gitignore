@@ -6,3 +6,4 @@ Archive/
 testing.csv
 logs/
 __pycache__/
+.env
