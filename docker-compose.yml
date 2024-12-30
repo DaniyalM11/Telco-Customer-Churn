@@ -1,0 +1,92 @@
+version: "3.8"
+
+services:
+  airflow-postgres:
+    image: postgres:13
+    container_name: airflow-postgres
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  airflow-init:
+    image: ${AIRFLOW_IMAGE_NAME:-extending_airflow:latest}
+    container_name: airflow-init
+    depends_on:
+      - airflow-postgres
+    environment:
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@airflow-postgres:5432/airflow
+      - PYTHONPATH=/opt/airflow
+      - AIRFLOW__CORE__ALLOWED_DESERIALIZATION_CLASSES=ChurnPrediction.entity.artifact_entity.DataIngestionArtifact,ChurnPrediction.entity.artifact_entity.DataValidationArtifact,ChurnPrediction.entity.artifact_entity.DataTransformationArtifact,ChurnPrediction.entity.artifact_entity.ModelTrainerArtifact
+      
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./plugins:/opt/airflow/plugins
+      - ./ChurnPrediction:/opt/airflow/ChurnPrediction
+      - ./Artifacts:/opt/airflow/Artifacts
+      - ./Batch_Data:/opt/airflow/Batch_Data
+      - ./data_schema:/opt/airflow/data_schema
+      - ./final_model:/opt/airflow/final_model
+      - ./prediction_output:/opt/airflow/prediction_output
+      - ./Telco_Customer_Data:/opt/airflow/Telco_Customer_Data
+      - ./logs:/opt/airflow/logs
+      - ./mlruns:/opt/airflow/mlruns      
+
+  airflow-webserver:
+    image: ${AIRFLOW_IMAGE_NAME:-extending_airflow:latest}
+    container_name: airflow-webserver
+    depends_on:
+      - airflow-init
+    ports:
+      - "8080:8080"
+    environment:
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@airflow-postgres:5432/airflow
+      - PYTHONPATH=/opt/airflow
+      - AIRFLOW__CORE__ALLOWED_DESERIALIZATION_CLASSES=ChurnPrediction.entity.artifact_entity.DataIngestionArtifact,ChurnPrediction.entity.artifact_entity.DataValidationArtifact,ChurnPrediction.entity.artifact_entity.DataTransformationArtifact,ChurnPrediction.entity.artifact_entity.ModelTrainerArtifact
+      
+    command: ["airflow", "webserver"]
+    restart: always
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./plugins:/opt/airflow/plugins
+      - ./ChurnPrediction:/opt/airflow/ChurnPrediction
+      - ./Artifacts:/opt/airflow/Artifacts
+      - ./Batch_Data:/opt/airflow/Batch_Data
+      - ./data_schema:/opt/airflow/data_schema
+      - ./final_model:/opt/airflow/final_model
+      - ./prediction_output:/opt/airflow/prediction_output
+      - ./Telco_Customer_Data:/opt/airflow/Telco_Customer_Data
+      - ./logs:/opt/airflow/logs
+      - ./mlruns:/opt/airflow/mlruns      
+
+  airflow-scheduler:
+    image: ${AIRFLOW_IMAGE_NAME:-extending_airflow:latest}
+    container_name: airflow-scheduler
+    depends_on:
+      - airflow-init
+    environment:
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@airflow-postgres:5432/airflow
+      - PYTHONPATH=/opt/airflow
+      - AIRFLOW__CORE__ALLOWED_DESERIALIZATION_CLASSES=ChurnPrediction.entity.artifact_entity.DataIngestionArtifact,ChurnPrediction.entity.artifact_entity.DataValidationArtifact,ChurnPrediction.entity.artifact_entity.DataTransformationArtifact,ChurnPrediction.entity.artifact_entity.ModelTrainerArtifact
+      
+    command: ["airflow", "scheduler"]
+    restart: always
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./plugins:/opt/airflow/plugins
+      - ./ChurnPrediction:/opt/airflow/ChurnPrediction
+      - ./Artifacts:/opt/airflow/Artifacts
+      - ./Batch_Data:/opt/airflow/Batch_Data
+      - ./data_schema:/opt/airflow/data_schema
+      - ./final_model:/opt/airflow/final_model
+      - ./prediction_output:/opt/airflow/prediction_output
+      - ./Telco_Customer_Data:/opt/airflow/Telco_Customer_Data
+      - ./logs:/opt/airflow/logs
+      - ./mlruns:/opt/airflow/mlruns
+
+volumes:
+  postgres_data:

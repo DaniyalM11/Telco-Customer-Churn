@@ -2,8 +2,10 @@ import sys
 import os
 
 from ChurnPrediction.exception.exception import ChurnPredictionException
-from ChurnPrediction.logging.logger import logging
+from ChurnPrediction.custom_logging.logger import logging
 from ChurnPrediction.pipeline.training_pipeline import TrainingPipeline
+from ChurnPrediction.pipeline.ml_training_pipeline import ML_TrainingPipeline
+from ChurnPrediction.pipeline.data_engineering_pipeline import DE_TrainingPipeline
 from ChurnPrediction.entity.config_entity import TrainingPipelineConfig
 
 from fastapi.middleware.cors import CORSMiddleware
@@ -37,7 +39,7 @@ app.add_middleware(
 async def index():
     return RedirectResponse(url="/docs")
 
-@app.get("/train")
+@app.get("/train on latest data")
 async def train_route():
     try:
         training_pipeline_config = TrainingPipelineConfig()

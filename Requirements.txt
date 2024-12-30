@@ -17,5 +17,11 @@ apache-airflow
 fastapi
 uvicorn
 python-multipart
-
+docker
+python-dotenv
+#pendulum<3.0
+#flask-session==0.4.0
+#connexion==2.6.0
+#jsonschema>=3.0.1
+#markupsafe==2.0.1
 ##-e .

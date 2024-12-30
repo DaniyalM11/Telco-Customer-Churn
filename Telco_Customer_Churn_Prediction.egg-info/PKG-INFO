@@ -21,3 +21,5 @@ Requires-Dist: mlflow
 Requires-Dist: apache-airflow
 Requires-Dist: fastapi
 Requires-Dist: uvicorn
+Requires-Dist: python-multipart
+Requires-Dist: docker

@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniy/Telco%20Customer%20Churn%20Prediction/mlruns/0/2d0cc0ef655e451b9148025067426999/artifacts
+end_time: 1735510430903
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 2d0cc0ef655e451b9148025067426999
+run_name: peaceful-tern-220
+run_uuid: 2d0cc0ef655e451b9148025067426999
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1735510421157
+status: 3
+tags: []
+user_id: Daniy

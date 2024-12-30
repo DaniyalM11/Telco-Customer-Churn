@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniy/Telco%20Customer%20Churn%20Prediction/mlruns/0/a0c9455a127e489f9740132e6611526c/artifacts
+end_time: 1735523555642
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a0c9455a127e489f9740132e6611526c
+run_name: intelligent-swan-497
+run_uuid: a0c9455a127e489f9740132e6611526c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1735523544230
+status: 3
+tags: []
+user_id: Daniy

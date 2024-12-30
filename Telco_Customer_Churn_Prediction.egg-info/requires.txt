@@ -16,3 +16,5 @@ mlflow
 apache-airflow
 fastapi
 uvicorn
+python-multipart
+docker

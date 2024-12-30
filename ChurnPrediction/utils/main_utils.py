@@ -2,7 +2,7 @@ from datetime import datetime
 import os,sys
 import yaml
 from ChurnPrediction.exception.exception import ChurnPredictionException
-from ChurnPrediction.logging.logger import logging
+from ChurnPrediction.custom_logging.logger import logging
 import numpy as np
 import pickle    
 import pandas as pd   
@@ -10,7 +10,7 @@ import pandas as pd
 # function to find the latest file in the directory
 def churn_filename():
     # Construct the directory path
-    directory = os.path.join(os.getcwd() , "Telco Customer Data")
+    directory = os.path.join(os.getcwd() , "Telco_Customer_Data")
     
     # Initialize the latest date and file
     latest_file_date = datetime.strptime("01011900", "%m%d%Y")  # Start with an old date

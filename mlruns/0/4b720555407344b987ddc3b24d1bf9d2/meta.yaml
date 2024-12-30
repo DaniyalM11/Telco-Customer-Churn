@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniy/Telco%20Customer%20Churn%20Prediction/mlruns/0/4b720555407344b987ddc3b24d1bf9d2/artifacts
+end_time: 1735524410641
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4b720555407344b987ddc3b24d1bf9d2
+run_name: fearless-hog-917
+run_uuid: 4b720555407344b987ddc3b24d1bf9d2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1735524406131
+status: 3
+tags: []
+user_id: Daniy

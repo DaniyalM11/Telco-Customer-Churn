@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniy/Telco%20Customer%20Churn%20Prediction/mlruns/0/ba34cf48801d416cbdfb99192b7abe50/artifacts
+end_time: 1735505017966
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: ba34cf48801d416cbdfb99192b7abe50
+run_name: merciful-shoat-109
+run_uuid: ba34cf48801d416cbdfb99192b7abe50
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1735505012678
+status: 3
+tags: []
+user_id: Daniy

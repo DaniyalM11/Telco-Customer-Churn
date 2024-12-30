@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniy/Telco%20Customer%20Churn%20Prediction/mlruns/0/023f53f814b24264a27ffd15b4b5fbc9/artifacts
+end_time: 1735460382356
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 023f53f814b24264a27ffd15b4b5fbc9
+run_name: silent-bird-408
+run_uuid: 023f53f814b24264a27ffd15b4b5fbc9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1735460378834
+status: 3
+tags: []
+user_id: Daniy

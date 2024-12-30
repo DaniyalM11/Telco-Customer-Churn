@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniy/Telco%20Customer%20Churn%20Prediction/mlruns/0/c097e337717744d380ee53ef00a03b1f/artifacts
+end_time: 1735510059319
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c097e337717744d380ee53ef00a03b1f
+run_name: stylish-flea-484
+run_uuid: c097e337717744d380ee53ef00a03b1f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1735510052368
+status: 4
+tags: []
+user_id: airflow

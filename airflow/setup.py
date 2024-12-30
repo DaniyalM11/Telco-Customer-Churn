@@ -11,7 +11,7 @@ def get_requirements() -> List[str]:
     """
     requirements: List[str] = []
     try:
-        with open('requirements.txt', 'r') as f:
+        with open('Requirements.txt', 'r') as f:
             # Read and filter lines, ignoring empty lines and '-e' entries
             for line in f:
                 requirement = line.strip()

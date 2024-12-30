@@ -27,6 +27,7 @@ class DataIngestionConfig:
         self.train_test_split_ratio:float = training_pipeline.DATA_INGESTION_TRAIN_TEST_SPLIT_RATIO
         self.collection_name:str = training_pipeline.DATA_INGESTION_COLLECTION_NAME
         self.filedrop_location:str = training_pipeline.DATA_INGESTION_FILEDROP_LOCATION
+        
 
 class DataValidationConfig:
     def __init__(self,training_pipeline_config:TrainingPipelineConfig):
@@ -39,6 +40,7 @@ class DataValidationConfig:
         self.invalid_test_file_path: str = os.path.join(self.invalid_data_dir,training_pipeline.TEST_FILE_NAME)
         self.drift_report_file_path: str = os.path.join(self.data_validation_dir,training_pipeline.DATA_VALIDATION_DRIFT_REPORT_DIR,
                                                         training_pipeline.DATA_VALIDATION_DRIFT_REPORT_FILE_NAME)
+        
         
 class DataTransformationConfig:
     def __init__(self,training_pipeline_config:TrainingPipelineConfig):
@@ -53,6 +55,7 @@ class DataTransformationConfig:
             training_pipeline.TEST_FILE_NAME)
         self.transformed_object_file_path: str = os.path.join( self.data_transformation_dir, training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_OBJECT_DIR,
             training_pipeline.PREPROCESSING_OBJECT_FILE_NAME)
+        
         
 class ModelTrainerConfig:
     def __init__(self,training_pipeline_config:TrainingPipelineConfig):

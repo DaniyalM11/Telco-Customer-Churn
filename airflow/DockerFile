@@ -42,7 +42,7 @@ RUN apt-get update && apt-get install -y libgomp1
 USER airflow
 
 # Copy the requirements file into the container
-COPY Requirements.txt /opt/airflow/Requirements.txt
+COPY ./Requirements.txt /opt/airflow/Requirements.txt
 
 # Install Python dependencies from requirements.txt
 RUN pip install --no-cache-dir -r /opt/airflow/Requirements.txt
@@ -51,7 +51,7 @@ RUN pip install --no-cache-dir -r /opt/airflow/Requirements.txt
 COPY ./dags /opt/airflow/dags
 
 # Copy plugins (if any)
-COPY ./plugins /opt/airflow/plugins
+#COPY ./plugins /opt/airflow/plugins
 
 # Expose ports for the Airflow webserver
 EXPOSE 8080

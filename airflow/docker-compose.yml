@@ -24,17 +24,16 @@ services:
     command: ["airflow", "db", "init"]
     volumes:
       - ./dags:/opt/airflow/dags
-      - ./logs:/opt/airflow/logs
       - ./plugins:/opt/airflow/plugins
-      - ../ChurnPrediction:/opt/airflow/ChurnPrediction
-      - ../Artifacts:/opt/airflow/Artifacts
-      - ../Batch_Data:/opt/airflow/Batch_Data
-      - ../data_schema:/opt/airflow/data_schema
-      - ../final_model:/opt/airflow/final_model
-      - ../prediction_output:/opt/airflow/prediction_output
-      - "../Telco Customer Data:/opt/airflow/Telco_Customer_Data"
-      - ../logs:/opt/airflow/logs
-      - ../mlruns:/opt/airflow/mlruns      
+      - ./ChurnPrediction:/opt/airflow/ChurnPrediction
+      - ./Artifacts:/opt/airflow/Artifacts
+      - ./Batch_Data:/opt/airflow/Batch_Data
+      - ./data_schema:/opt/airflow/data_schema
+      - ./final_model:/opt/airflow/final_model
+      - ./prediction_output:/opt/airflow/prediction_output
+      - "./Telco Customer Data:/opt/airflow/Telco_Customer_Data"
+      - ./logs:/opt/airflow/logs
+      - ./mlruns:/opt/airflow/mlruns      
 
   airflow-webserver:
     image: ${AIRFLOW_IMAGE_NAME:-extending_airflow:latest}
@@ -50,17 +49,16 @@ services:
     restart: always
     volumes:
       - ./dags:/opt/airflow/dags
-      - ./logs:/opt/airflow/logs
       - ./plugins:/opt/airflow/plugins
-      - ../ChurnPrediction:/opt/airflow/ChurnPrediction
-      - ../Artifacts:/opt/airflow/Artifacts
-      - ../Batch_Data:/opt/airflow/Batch_Data
-      - ../data_schema:/opt/airflow/data_schema
-      - ../final_model:/opt/airflow/final_model
-      - ../prediction_output:/opt/airflow/prediction_output
-      - "../Telco Customer Data:/opt/airflow/Telco_Customer_Data"
-      - ../logs:/opt/airflow/logs
-      - ../mlruns:/opt/airflow/mlruns      
+      - ./ChurnPrediction:/opt/airflow/ChurnPrediction
+      - ./Artifacts:/opt/airflow/Artifacts
+      - ./Batch_Data:/opt/airflow/Batch_Data
+      - ./data_schema:/opt/airflow/data_schema
+      - ./final_model:/opt/airflow/final_model
+      - ./prediction_output:/opt/airflow/prediction_output
+      - "./Telco Customer Data:/opt/airflow/Telco_Customer_Data"
+      - ./logs:/opt/airflow/logs
+      - ./mlruns:/opt/airflow/mlruns      
 
   airflow-scheduler:
     image: ${AIRFLOW_IMAGE_NAME:-extending_airflow:latest}
@@ -74,17 +72,16 @@ services:
     restart: always
     volumes:
       - ./dags:/opt/airflow/dags
-      - ./logs:/opt/airflow/logs
       - ./plugins:/opt/airflow/plugins
-      - ../ChurnPrediction:/opt/airflow/ChurnPrediction
-      - ../Artifacts:/opt/airflow/Artifacts
-      - ../Batch_Data:/opt/airflow/Batch_Data
-      - ../data_schema:/opt/airflow/data_schema
-      - ../final_model:/opt/airflow/final_model
-      - ../prediction_output:/opt/airflow/prediction_output
-      - "../Telco Customer Data:/opt/airflow/Telco_Customer_Data"
-      - ../logs:/opt/airflow/logs
-      - ../mlruns:/opt/airflow/mlruns
+      - ./ChurnPrediction:/opt/airflow/ChurnPrediction
+      - ./Artifacts:/opt/airflow/Artifacts
+      - ./Batch_Data:/opt/airflow/Batch_Data
+      - ./data_schema:/opt/airflow/data_schema
+      - ./final_model:/opt/airflow/final_model
+      - ./prediction_output:/opt/airflow/prediction_output
+      - "./Telco Customer Data:/opt/airflow/Telco_Customer_Data"
+      - ./logs:/opt/airflow/logs
+      - ./mlruns:/opt/airflow/mlruns
 
 volumes:
   postgres_data:

@@ -3,7 +3,7 @@ import sys
 import pandas as pd
 
 from ChurnPrediction.exception.exception import ChurnPredictionException
-from ChurnPrediction.logging.logger import logging
+from ChurnPrediction.custom_logging.logger import logging
 
 from ChurnPrediction.entity.artifact_entity import DataTransformationArtifact, ModelTrainerArtifact
 from ChurnPrediction.entity.config_entity import ModelTrainerConfig
@@ -28,6 +28,13 @@ from sklearn.metrics import (
 from sklearn.model_selection import train_test_split, GridSearchCV
 from joblib import parallel_backend
 import mlflow
+from dotenv import load_dotenv
+
+load_dotenv()
+
+mlflow_tracking_uri = os.getenv("MLFLOW_TRACKING_URI")
+print(f"MLFLOW_TRACKING_URI: {mlflow_tracking_uri}")
+mlflow.set_tracking_uri(mlflow_tracking_uri)
 
 class ModelTrainer:
     def __init__(self, model_trainer_config: ModelTrainerConfig, data_transformation_artifact:DataTransformationArtifact):
@@ -218,7 +225,8 @@ class ModelTrainer:
             model_trainer_artifact=self.train_model(X_train=x_train, y_train=y_train, X_test=x_test, y_test=y_test)
 
         except Exception as e:
-            raise ChurnPredictionException(e,sys) from e    
+            raise ChurnPredictionException(e,sys) from e
+            
 
 
 

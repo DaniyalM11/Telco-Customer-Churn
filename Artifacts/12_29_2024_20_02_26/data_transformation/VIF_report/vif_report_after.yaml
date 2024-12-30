@@ -1,0 +1,50 @@
+Features:
+  0: MonthlyCharges
+  1: PhoneService_Yes
+  2: MultipleLines_No phone service
+  3: InternetService_Fiber optic
+  4: InternetService_No
+  5: StreamingMovies_Yes
+  6: StreamingTV_Yes
+  7: TotalCharges
+  8: tenure
+  9: MultipleLines_Yes
+  10: DeviceProtection_Yes
+  11: OnlineBackup_Yes
+  12: TechSupport_Yes
+  13: OnlineSecurity_Yes
+  14: Contract_Two year
+  15: PaymentMethod_Electronic check
+  16: PaymentMethod_Mailed check
+  17: Contract_One year
+  18: PaymentMethod_Credit card (automatic)
+  19: Partner_Yes
+  20: Dependents_Yes
+  21: PaperlessBilling_Yes
+  22: SeniorCitizen_Yes
+  23: gender_Male
+VIF:
+  0: 863.63
+  1: 358.24
+  2: 152.64
+  3: 148.1
+  4: 103.19
+  5: 24.08
+  6: 24.07
+  7: 11.01
+  8: 7.7
+  9: 7.27
+  10: 6.95
+  11: 6.77
+  12: 6.52
+  13: 6.38
+  14: 2.66
+  15: 1.98
+  16: 1.86
+  17: 1.63
+  18: 1.56
+  19: 1.45
+  20: 1.37
+  21: 1.21
+  22: 1.15
+  23: 1.0

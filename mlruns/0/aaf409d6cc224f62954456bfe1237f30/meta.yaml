@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniy/Telco%20Customer%20Churn%20Prediction/mlruns/0/aaf409d6cc224f62954456bfe1237f30/artifacts
+end_time: 1735524401074
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: aaf409d6cc224f62954456bfe1237f30
+run_name: welcoming-ant-549
+run_uuid: aaf409d6cc224f62954456bfe1237f30
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1735524395972
+status: 3
+tags: []
+user_id: Daniy

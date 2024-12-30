@@ -1,24 +1,53 @@
-# Use an official Python base image
-FROM python:3.9-slim
+# Start with the official Airflow image
+FROM apache/airflow:2.10.4
 
 # Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV AIRFLOW_HOME=/opt/airflow
+ENV PYTHONPATH=/opt/airflow
 
-# Set the working directory in the container
-WORKDIR /app
+# Copy the entire project directory into the container
+COPY ./ /opt/airflow
+
+# Set the working directory
+WORKDIR /opt/airflow
+
+# Install PostgreSQL client library
+RUN pip install psycopg2-binary
+
+# Switch to root user for permissions and cleanup
+USER root
+
+# Ensure build directory is writable and remove it if it exists
+RUN chmod -R u+w build/ && rm -rf build/
+
+# Switch back to airflow user before running pip install
+USER airflow
+
+# Install the custom module
+RUN pip install .
+
+# Install system dependencies required by the project
+USER root
+RUN apt-get update && apt-get install -y libgomp1 && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Switch back to airflow user
+USER airflow
 
 # Copy the requirements file into the container
-COPY requirements.txt /app/
+COPY ./Requirements.txt /opt/airflow/Requirements.txt
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Install Python dependencies from requirements.txt
+RUN pip install --no-cache-dir -r /opt/airflow/Requirements.txt
 
-# Copy the application code into the container
-COPY . /app/
+# Copy DAGs into the Airflow container
+COPY ./dags /opt/airflow/dags
 
-# Expose the port on which FastAPI will run
-EXPOSE 8000
+#COPY ./fordockerenv.txt /opt/airflow/.env
 
-# Command to run the FastAPI application
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+ENV MLFLOW_TRACKING_URI=/opt/airflow/mlruns
+
+# Expose ports for the Airflow webserver
+EXPOSE 8080
+
+# Command to start Airflow (only for standalone setups)
+CMD ["standalone"]

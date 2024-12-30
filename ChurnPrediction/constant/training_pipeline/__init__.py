@@ -31,7 +31,8 @@ DATA_INGESTION_DIR_NAME: str = "data_ingestion"
 DATA_INGESTION_FEATURE_STORE_DIR: str = "feature_store"
 DATA_INGESTION_INGESTED_DIR: str = "ingested"
 DATA_INGESTION_TRAIN_TEST_SPLIT_RATIO: float = 0.2
-DATA_INGESTION_FILEDROP_LOCATION: str = "Telco Customer Data\\"
+DATA_INGESTION_FILEDROP_LOCATION = os.path.join("Telco_Customer_Data","")
+
 
 """
 Data Validation related constant start with DATA_VALIDATION VAR NAME
@@ -42,6 +43,7 @@ DATA_VALIDATION_INVALID_DIR: str = "invalid"
 DATA_VALIDATION_DRIFT_REPORT_DIR: str = "drift_report"
 DATA_VALIDATION_DRIFT_REPORT_FILE_NAME: str = "report.yaml"
 PREPROCESSING_OBJECT_FILE_NAME: str = "preprocessing.pkl"
+
 
 """
 Data Transformation related constant start with DATA_TRANSFORMATION VAR NAME
@@ -62,6 +64,7 @@ DATA_TRANSFORMATION_VIF_REPORT_DIR: str = "VIF_report"
 DATA_TRANSFORMATION_REPORT_BEFORE_FILE_NAME: str = "vif_report_before.yaml"
 DATA_TRANSFORMATION_REPORT_AFTER_FILE_NAME: str = "vif_report_after.yaml"
 DATA_TRANSFORMATION_COLUMNS_TO_DROP: list = ["customerID"]
+
 
 """
 Model Trainer related constant start with MODEL_TRAINER VAR NAME 

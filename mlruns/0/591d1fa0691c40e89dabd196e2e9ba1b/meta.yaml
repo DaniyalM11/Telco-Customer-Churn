@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniy/Telco%20Customer%20Churn%20Prediction/mlruns/0/591d1fa0691c40e89dabd196e2e9ba1b/artifacts
+end_time: 1735505579923
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 591d1fa0691c40e89dabd196e2e9ba1b
+run_name: judicious-lamb-668
+run_uuid: 591d1fa0691c40e89dabd196e2e9ba1b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1735505573453
+status: 4
+tags: []
+user_id: airflow

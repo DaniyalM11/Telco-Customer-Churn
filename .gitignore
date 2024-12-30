@@ -4,3 +4,5 @@ test.py
 temp3.py
 Archive/
 testing.csv
+logs/
+__pycache__/

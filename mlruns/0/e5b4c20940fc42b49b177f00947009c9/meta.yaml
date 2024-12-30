@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniy/Telco%20Customer%20Churn%20Prediction/mlruns/0/e5b4c20940fc42b49b177f00947009c9/artifacts
+end_time: 1735523775133
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: e5b4c20940fc42b49b177f00947009c9
+run_name: fun-sponge-186
+run_uuid: e5b4c20940fc42b49b177f00947009c9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1735523770889
+status: 3
+tags: []
+user_id: Daniy

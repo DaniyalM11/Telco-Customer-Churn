@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniy/Telco%20Customer%20Churn%20Prediction/mlruns/0/4b0b96304d8b4882bcf96a4d8611caae/artifacts
+end_time: 1735505039426
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4b0b96304d8b4882bcf96a4d8611caae
+run_name: bedecked-dolphin-225
+run_uuid: 4b0b96304d8b4882bcf96a4d8611caae
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1735505035710
+status: 3
+tags: []
+user_id: Daniy

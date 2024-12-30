@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Daniy/Telco%20Customer%20Churn%20Prediction/mlruns/0/fc7aed03f7df4843a05b926746d7a289/artifacts
+end_time: 1735511283541
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: fc7aed03f7df4843a05b926746d7a289
+run_name: worried-skink-101
+run_uuid: fc7aed03f7df4843a05b926746d7a289
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1735511277710
+status: 4
+tags: []
+user_id: airflow
