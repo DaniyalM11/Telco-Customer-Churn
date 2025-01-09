@@ -101,12 +101,7 @@ This repository contains a comprehensive project for predicting customer churn i
 
 ---
 
-## **Setup Instructions**
 
-### **1. Clone the Repository**
-```bash
-git clone https://github.com/yourusername/telco-churn-prediction.git
-cd telco-churn-prediction
 
 
 
